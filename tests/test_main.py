@@ -147,16 +147,13 @@ class TestDefaultGUi:
     def test_find_two_singlets_layout(self):
 
         foundLayout = self.ui.findChild(QGridLayout, 'twosingletslayout')
-        if foundLayout:
-            print('Found layout named', foundLayout.objectName())
-            print('Found layout has parent:', foundLayout.parent(),
-                  foundLayout.parent().objectName())
-        else:
+        if not foundLayout:
             foundLayout = self.ui.centralWidget().layout()
             print('Did not find QGridLayout child named "twosingletlayout"')
-            print('Found layout named', foundLayout.objectName())
-            print('Found layout has parent:', foundLayout.parent(),
-                  foundLayout.parent().objectName())
+
+        print('Found layout named', foundLayout.objectName())
+        print('Found layout has parent:', foundLayout.parent(),
+              foundLayout.parent().objectName())
 
     def test_find_AB_widget(self):
         foundABWidget = self.ui.findChild(QWidget, 'abwidget')
@@ -361,7 +358,7 @@ class TestABGUi:
 
         for widget in main.ab_vars:
             print(widget.value, 'vs. ', self.widgetdict[widget.key].value())
-            if widget.key == 'k_ab' or widget.key == 'wa':
+            if widget.key in ['k_ab', 'wa']:
                 assert self.widgetdict[widget.key].value() == 20.01
                 # k and wa widgets should not go below 0.01
             elif widget.key == 'j_ab':

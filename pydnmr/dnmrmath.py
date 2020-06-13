@@ -121,8 +121,7 @@ def two_spin(v, va, vb, ka, wa, wb, pa):
     R = 2 * pi * Dv * (1 + tau * ((1 / T2a) + (1 / T2b)))
     R += pi * dv * tau * ((1 / T2b) - (1 / T2a)) + pi * dv * (pa - pb)
 
-    I = (P * (1 + tau * ((pb / T2a) + (pa / T2b))) + Q * R) / (P ** 2 + R ** 2)
-    return I
+    return (P * (1 + tau * ((pb / T2a) + (pa / T2b))) + Q * R) / (P ** 2 + R ** 2)
 
 
 def d2s_func(va, vb, ka, wa, wb, pa):
@@ -241,5 +240,4 @@ def dnmr_AB(v, v1, v2, J, k, w):
     n2 = r_minus * b_minus - s * a_minus
     d2 = a_minus ** 2 + b_minus ** 2
 
-    I = (n1 / d1) + (n2 / d2)
-    return I
+    return (n1 / d1) + (n2 / d2)
